@@ -137,3 +137,17 @@ i.btn { display: block; width: 56%; height: 56%; border-radius: 50%; background:
   .track { grid-template-columns: repeat(8, 1fr); grid-template-rows: none; width: calc(100vw - 32px); }
   .tcell { aspect-ratio: 1; }
 }
+
+/* アイコン */
+.ico { width: .75em; height: .9em; vertical-align: -1px; margin-right: 2px; }
+.ico-btn { display: inline-block; width: .8em; height: .8em; border-radius: 50%; background: #4a7fc1; vertical-align: -1px; margin-right: 2px; box-shadow: inset 0 0 0 2px rgba(255,255,255,.5); }
+.circle .token { align-self: center; padding: 0 4px; }
+.circle .token span {
+  display: block; width: 18px; height: 30px; border-radius: 4px;
+  background: linear-gradient(#8a6b4a 0 18%, #d9a24a 18% 82%, #8a6b4a 82%);
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+.track-logo {
+  grid-column: 3 / 6; grid-row: 4 / 7; align-self: center; justify-self: center; text-align: center;
+  font-weight: 800; letter-spacing: 3px; color: #8a6b4a; font-size: 13px; line-height: 1.4;
+}

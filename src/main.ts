@@ -35,6 +35,10 @@ let flip = false;
 let anchor: [number, number] | null = null;
 let lastPointer = 'mouse';
 
+const HOURGLASS =
+  '<svg class="ico" viewBox="0 0 10 12" aria-hidden="true"><path d="M1 0h8v1H8v2.2L5.6 6 8 8.8V11h1v1H1v-1h1V8.8L4.4 6 2 3.2V1H1z" fill="currentColor"/></svg>';
+const BUTTON_ICO = '<i class="ico-btn" aria-hidden="true"></i>';
+
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 // ---------------- ロビー ----------------
@@ -348,11 +352,11 @@ function circleHTML(): string {
       return `<div class="${cls}" data-idx="${i}">
         ${avail ? `<span class="num">${i + 1}</span>` : ''}
         ${miniPiece(id, avail ? 14 : 10)}
-        <div class="stats"><span title="ボタン">●${pc.cost}</span><span title="時間">⌛${pc.time}</span></div>
+        <div class="stats"><span title="ボタン">${BUTTON_ICO}${pc.cost}</span><span title="時間">${HOURGLASS}${pc.time}</span></div>
       </div>`;
     })
     .join('');
-  return `<div class="circle"><div class="token" title="ニュートラルトークン">🧵</div>${items}</div>`;
+  return `<div class="circle"><div class="token" title="ニュートラルトークン"><span></span></div>${items}</div>`;
 }
 
 function spiral(): [number, number][] {
@@ -385,7 +389,7 @@ function trackHTML(): string {
     here.forEach((pi, k) => (inner += `<span class="tok" style="background:${PLAYER_COLORS[pi]};--k:${k}"></span>`));
     return `<div class="tcell ${i === 0 ? 'start' : ''} ${i === END ? 'goal' : ''}" style="grid-column:${x + 1};grid-row:${y + 1}" title="${i}">${inner}<em>${i}</em></div>`;
   }).join('');
-  return `<div class="track">${cells}</div>`;
+  return `<div class="track">${cells}<div class="track-logo">PATCH<br>WORK</div></div>`;
 }
 
 function playerPanel(pi: number): string {
@@ -396,9 +400,9 @@ function playerPanel(pi: number): string {
   return `<div class="pp ${cur ? 'cur' : ''}" style="--pc:${PLAYER_COLORS[pi]}">
     <div class="pname"><span class="dot"></span>${esc(p.name)} ${you}</div>
     <div class="pstats">
-      <span title="所持ボタン">● <b>${p.buttons}</b></span>
+      <span title="所持ボタン">${BUTTON_ICO} <b>${p.buttons}</b></span>
       <span title="ボタン収入">収入 <b>${p.income}</b></span>
-      <span title="位置">⌛ <b>${p.pos}</b>/${END}</span>
+      <span title="位置">${HOURGLASS} <b>${p.pos}</b>/${END}</span>
       <span title="空きマス">空き <b>${emptyCount(p)}</b></span>
       <span title="現時点の得点">得点 <b>${score(s, pi)}</b></span>
     </div>
